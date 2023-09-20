@@ -11,7 +11,7 @@ function imageMode(color) {
   image2.src = `img/undraw_feeling_proud_${color}.svg`;
   image3.src = `img/undraw_conceptual_idea_${color}.svg`;
 }
-
+// TODO dry refractor light/dark mode
 function darkMode() {
   nav.style.backgroundColor = "rgb(0 0 0 / 75%)";
   textBox.style.backgroundColor = "rgb(255 255 255 / 75%)";
@@ -44,3 +44,14 @@ function switchTheme(event) {
 
 // event listener
 toggleSwitch.addEventListener("change", switchTheme);
+
+// local storage
+const currentTheme = localStorage.getItem("theme");
+
+if (currentTheme) {
+  document.documentElement.setAttribute("data-theme", currentTheme);
+  if (currentTheme === "dark") {
+    toggleSwitch.checked = true;
+    darkMode();
+  }
+}
